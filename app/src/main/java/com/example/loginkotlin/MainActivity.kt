@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.loginkotlin.ui.login.LogIn
-import com.example.loginkotlin.ui.navigation.navigation
-import com.example.loginkotlin.ui.recovery.Recovery
+import com.example.loginkotlin.ui.navigation.AppNav
 import com.example.loginkotlin.ui.register.Register
 import com.example.loginkotlin.ui.theme.LoginKotlinTheme
 
@@ -16,11 +14,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LoginKotlinTheme {
-                //LogIn()
-                //Recovery()
-                Register()
-            }
+            AppNav()
+
         }
     }
 }

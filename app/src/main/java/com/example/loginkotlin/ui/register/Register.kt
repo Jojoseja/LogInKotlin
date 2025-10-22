@@ -9,15 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountBox
-import androidx.compose.material.icons.rounded.Email
-import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,13 +21,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.example.loginkotlin.ui.navigation.AppNav
+import com.example.loginkotlin.ui.navigation.Navigation
+
 
 @Composable
-fun Register(){
+fun Register(navController: NavHostController) {
 
     var email by remember {mutableStateOf("") }
     var passwd by remember {mutableStateOf("")}
@@ -43,43 +38,15 @@ fun Register(){
     Box(
         Modifier
             .fillMaxSize()
-            .padding(10.dp)
+            .padding(10.dp),
+            contentAlignment = Alignment.Center
     ) {
         Column (
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = Color.White)
+            , verticalArrangement = Arrangement.Center
         ) {
-
-            // Caja "Login"
-            Box (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    //.background(color = Color.White)
-                    .padding(0.dp, 150.dp, 0.dp, 10.dp),
-                contentAlignment = Alignment.Center
-            )
-            {
-                Text(
-                    text="Login",
-                    color = Color.Blue,
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            // Caja Te echamos de menos
-            Box (Modifier
-                .fillMaxWidth()
-                //.background(color = Color.White)
-                .padding(30.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text (
-                    text = "¡Te echabamos de menos!",
-                    color = Color.Black,
-                    fontSize = 20.sp
-                )
-            }
             // Caja Email
             Row (Modifier
                 .fillMaxWidth()
@@ -112,20 +79,7 @@ fun Register(){
 
                 )
             }
-            // Caja Olvidaste tu contraseña
-            Row (Modifier
-                .fillMaxWidth()
-                .padding(20.dp, 0.dp),
-                horizontalArrangement = Arrangement.End
-            ) {
-                Text(
-                    text = "¿Olvidaste tu contraseña?",
-                    color = Color.Blue,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            // Sign In
+            // Crear Cuenta
             Row (Modifier
                 .fillMaxWidth()
                 .padding(20.dp, 0.dp),
@@ -133,96 +87,15 @@ fun Register(){
             ) {
                 Button(
                     onClick = {
-                        println("Hello")
+                        navController.navigate(Navigation.Login.route)
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp, vertical = 15.dp)
                 )
                 {
-                    Text(text = "Sign In")
+                    Text(text = "Create Account")
                 }
             }
-            // Caja Crear una cuenta nueva
-            Row (Modifier
-                .fillMaxWidth()
-                .padding(20.dp, 15.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Crear una nueva cuenta",
-                    color = Color.Gray,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            Row (Modifier
-                .fillMaxWidth()
-                .padding(20.dp, top = 30.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "O continua con",
-                    color = Color.Blue,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            Row (Modifier
-                .fillMaxWidth()
-                .padding(20.dp, 10.dp),
-                horizontalArrangement = Arrangement.Center
-
-            ) {
-                //Google - Base
-                Button(
-                    modifier = Modifier.padding(horizontal = 5.dp),
-                    onClick = { println("Google") },
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = Color.Black,
-                        containerColor = Color.LightGray
-                    ),
-                    shape = RoundedCornerShape(4.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.Email,
-                        contentDescription = "Google",
-                        modifier = Modifier.size(25.dp)
-                    )
-                }
-                //Facebook
-                Button(
-                    modifier = Modifier.padding(horizontal = 5.dp),
-                    onClick = { println("Facebook") },
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = Color.Black,
-                        containerColor = Color.LightGray
-                    ),
-                    shape = RoundedCornerShape(4.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.AccountBox,
-                        contentDescription = "Google",
-                        modifier = Modifier.size(25.dp)
-                    )
-                }
-                //Mac
-                Button(
-                    modifier = Modifier.padding(horizontal = 5.dp),
-                    onClick = { println("Mac") },
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = Color.Black,
-                        containerColor = Color.LightGray
-                    ),
-                    shape = RoundedCornerShape(4.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.Home,
-                        contentDescription = "Google",
-                        modifier = Modifier.size(25.dp)
-                    )
-                }
-            }
-
         }
 
     }

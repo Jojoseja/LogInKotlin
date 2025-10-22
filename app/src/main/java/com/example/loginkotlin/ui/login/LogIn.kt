@@ -1,7 +1,10 @@
 package com.example.loginkotlin.ui.login
 
+import android.R.attr.clickable
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountBox
 import androidx.compose.material.icons.rounded.Email
@@ -33,9 +37,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import com.example.loginkotlin.ui.navigation.Navigation
 
 @Composable
-fun LogIn(){
+fun LogIn(navController: NavHostController) {
     var email by remember {mutableStateOf("") }
     var passwd by remember {mutableStateOf("")}
 
@@ -121,7 +129,11 @@ fun LogIn(){
                     text = "¿Olvidaste tu contraseña?",
                     color = Color.Blue,
                     fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.clickable(
+                        true,
+                        onClick = {navController.navigate(Navigation.Recovery.route)}
+                    )
                 )
             }
             // Sign In
@@ -151,7 +163,11 @@ fun LogIn(){
                     text = "Crear una nueva cuenta",
                     color = Color.Gray,
                     fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.clickable(
+                        true,
+                        onClick = {navController.navigate(Navigation.Register.route)}
+                    )
                 )
             }
             Row (Modifier
@@ -164,7 +180,7 @@ fun LogIn(){
                     color = Color.Blue,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold
-                )
+                    )
             }
             Row (Modifier
                 .fillMaxWidth()

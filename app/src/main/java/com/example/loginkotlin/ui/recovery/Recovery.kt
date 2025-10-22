@@ -24,9 +24,11 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.example.loginkotlin.ui.navigation.Navigation
 
 @Composable
-fun Recovery(){
+fun Recovery(navController: NavHostController) {
     var email by remember {mutableStateOf("") }
     Box(
         Modifier
@@ -75,7 +77,7 @@ fun Recovery(){
             ) {
                 Button(
                     onClick = {
-                        println("Hello")
+                        navController.navigate(Navigation.Login.route)
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp, vertical = 15.dp)
